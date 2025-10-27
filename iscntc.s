@@ -26,4 +26,7 @@
 .ifdef SYM1
 .include "sym1_iscntc.s"
 .endif
+.ifdef SPACENAV
+.include "spacenav_iscntc.s"
+.endif
 ;!!! runs into "STOP"

@@ -6,6 +6,7 @@ CONFIG_IO_MSB := 1 ; all I/O has bit #7 set
 CONFIG_PRINT_CR := 1 ; print CR when line end reached
 CONFIG_SAFE_NAMENOTFOUND := 1
 CONFIG_SCRTCH_ORDER := 3
+CONFIG_NO_LINE_EDITING := 1
 
 BYTES_PER_ELEMENT := 6 ; XXX override
 
@@ -16,10 +17,11 @@ ZP_START3 = $0D
 ZP_START4 = $55
 
 ;extra ZP variables
-USR				:= $000A
+USR	:= $000A
 
 ; inputbuffer
-INPUTBUFFER     := $0200
+;INPUTBUFFER     := $0200
+INPUTBUFFER     = $0200
 
 ; constants
 STACK_TOP		:= $F8
@@ -33,8 +35,8 @@ WIDTH2			:= 14
 RAMSTART2	:= $2A00
 
 ; monitor functions
-MONRDKEY        := $FD0C
-MONCOUT         := $FDED
+;MONRDKEY    no  := $FD0C
+;MONCOUT     no  := $FDED
 LF689			:= $F689
 LF800			:= $F800
 LF819			:= $F819

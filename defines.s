@@ -26,7 +26,7 @@ AIM65 := 1
 SYM1 := 1
 .include "defines_sym1.s"
 .elseif .def(spacenav)
-SYM1 := 1
+SPACENAV := 1
 .include "defines_spacenav.s"
 .endif
 

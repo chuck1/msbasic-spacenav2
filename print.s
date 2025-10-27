@@ -100,8 +100,13 @@ L29B9:
         ldy     #>(INPUTBUFFER-1)
   .else
     .ifndef APPLE
-        ldy     #$00
-        sty     INPUTBUFFER,x
+	
+        ;ldy     #$00
+        ;sty     INPUTBUFFER,x 		; compile error: invalid address mode. OK to use A?
+
+        lda     #$00
+        sta     INPUTBUFFER,x
+
         ldx     #LINNUM+1
     .endif
     .if .def(MICROTAN) || .def(SYM1)

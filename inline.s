@@ -82,11 +82,11 @@ INLINAIM:
         beq     LB35F
       .else
         beq     L2423
-      .ifdef MICROTAN
+        .ifdef MICROTAN
         cmp     #$7F ; DEL
-      .else
+        .else
         cmp     #$5F ; _
-      .endif
+        .endif
         beq     L2420
       .endif
 L2443:
