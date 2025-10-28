@@ -212,6 +212,7 @@ L4098:
   .else
         jsr     NXIN
   .endif
+DEBUG_QUES_MEM_SIZE_0:
         stx     TXTPTR
         sty     TXTPTR+1
         jsr     CHRGET
