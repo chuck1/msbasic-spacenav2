@@ -213,6 +213,8 @@ L4098:
         jsr     NXIN
   .endif
 DEBUG_QUES_MEM_SIZE_0:
+        ldx     #<INPUTBUFFER-1 ; CHARLES
+        ldy     #$00            ; CHARLES
         stx     TXTPTR
         sty     TXTPTR+1
         jsr     CHRGET
@@ -223,7 +225,7 @@ DEBUG_QUES_MEM_SIZE_0:
     .endif
   .endif
         tay
-        bne     L40EE
+        bne     L40EE ; branch if a != 0
 .endif
 .ifndef CBM2
         lda     #<RAMSTART2
@@ -290,17 +292,12 @@ L40FA:
 .endif
 L4106:
 .ifndef CONFIG_CBM_ALL
-  .ifdef APPLE
-        lda     #$FF
-        jmp     L2829
-        .word	STROUT ; PATCH!
-        jsr     NXIN
-  .else
         lda     #<QT_TERMINAL_WIDTH
         ldy     #>QT_TERMINAL_WIDTH
         jsr     STROUT
         jsr     NXIN
-  .endif
+        ldx     #<INPUTBUFFER-1 ; CHARLES
+        ldy     #$00            ; CHARLES
         stx     TXTPTR
         sty     TXTPTR+1
         jsr     CHRGET

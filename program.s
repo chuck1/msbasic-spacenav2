@@ -93,8 +93,12 @@ LE28E:
 L2351:
         jsr     INLIN
 .endif
+DEBUG_RESTART:
+        ldx     #<INPUTBUFFER-1 ; CHARLES
+        ldy     #$00            ; CHARLES
         stx     TXTPTR
         sty     TXTPTR+1
+
         jsr     CHRGET
 .ifdef CONFIG_11
 ; bug in pre-1.1: CHRGET sets Z on '\0'
@@ -386,6 +390,8 @@ L2498:
 ; ----------------------------------------------------------------------------
 ; STORE CHARACTER OR TOKEN IN OUTPUT LINE
 ; ----------------------------------------------------------------------------
+DEBUG_FALL_THROUGH_TOKEN_MATCH:
+	nop
 L24AA:
         ldy     STRNG2
 L24AC:
@@ -426,14 +432,32 @@ L24D0:
 L24D7:
         ldx     TXTPTR
         inc     EOLPNTR
+
 L24DB:
         iny
-        lda     MATHTBL+28+1,y
-        bpl     L24DB
+
+	; I think this code is supposed to iterate through the TOKEN_NAME_TABLE 
+	; until we find 
+        ;lda     MATHTBL+28+1,y      ; CHARLES RM
+        lda     TOKEN_NAME_TABLE,y   ; CHARLES ADD
+
+	; TOKEN_NAME_TABLE strings are high-bit terminated
+	; so N=1 would indicate EOS
+        bpl     L24DB ; branch if N=0
+
+	iny                          ; CHARLES ADD
+
+	; checking if end of table???
         lda     TOKEN_NAME_TABLE,y
-        bne     L2498
+	; branch back to code that compares INPUTBUFFER to token string
+        bne     L2498 ; branch if a != 0
+
+	; we reached end of token table
+DEBUG_REACHED_END_OF_TOKEN_NAME_TABLE:
+
         lda     INPUTBUFFERX,x
         bpl     L24AA
+
 ; ---END OF LINE------------------
 L24EA:
         sta     INPUTBUFFER-3,y

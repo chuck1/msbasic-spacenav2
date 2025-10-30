@@ -16,8 +16,8 @@ GENERIC_CHRGOT2:
         cmp     #$20
         beq     GENERIC_CHRGET
         sec
-        sbc     #$30		; a = a - #$30
+        sbc     #$30      ; a = a - #$30
         sec
-        sbc     #$D0		; a = a - #$D0
+        sbc     #$D0      ; a = a - #$D0
 L4058:
         rts

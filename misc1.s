@@ -8,7 +8,7 @@ LINGET:
         stx     LINNUM
         stx     LINNUM+1
 L28BE:
-        bcs     L28B7
+        bcs     L28B7 ; leads to rts
         sbc     #$2F
         sta     CHARAC
         lda     LINNUM+1

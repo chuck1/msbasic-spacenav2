@@ -1,5 +1,6 @@
 ; configuration
 CONFIG_2A := 1
+;CONFIG_2B := 1
 
 CONFIG_SCRTCH_ORDER := 2
 
@@ -47,9 +48,6 @@ RAMSTART2 := $0400
 ;extra ZP variables
 ;USR	:= $000A
 
-; inputbuffer
-;INPUTBUFFER     := $0200
-;INPUTBUFFER     = $0200
 
 ; constants
 ;STACK_TOP		:= $F8

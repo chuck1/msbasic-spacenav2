@@ -159,9 +159,9 @@ UNFNC_ATN:
 
         .segment "VECTORS"
 MATHTBL:
-        .byte   $79
+        .byte   $79      ; 0
         .word   FADDT-1
-        .byte   $79
+        .byte   $79      ; 3
         .word   FSUBT-1
         .byte   $7B
         .word   FMULTT-1
@@ -177,5 +177,6 @@ MATHTBL:
         .word   NEGOP-1
         .byte   $5A
         .word   EQUOP-1
-        .byte   $64
+        .byte   $64      ; 27
         .word   RELOPS-1
+                         ; 30

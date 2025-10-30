@@ -2,7 +2,7 @@
 ; (by Tom Greene)
 .macro htasc str
 	.repeat	.strlen(str)-1,I
-		.byte	.strat(str,I)
+	.byte	.strat(str,I)
 	.endrep
 	.byte	.strat(str,.strlen(str)-1) | $80
 .endmacro
@@ -15,7 +15,7 @@
 TOKEN_ADDRESS_TABLE:
         .segment "KEYWORDS"
 TOKEN_NAME_TABLE:
-		.segment "DUMMY"
+	.segment "DUMMY"
 DUMMY_START:
 .endmacro
 
@@ -31,17 +31,17 @@ DUMMY_START:
 
 ; lay down a keyword, optionally define a token symbol
 .macro keyword key, token
-		.segment "KEYWORDS"
-		htasc	key
-		define_token token
+	.segment "KEYWORDS"
+	htasc	key
+	define_token token
 .endmacro
 
 ; lay down a keyword and an address (RTS style),
 ; optionally define a token symbol
 .macro keyword_rts key, vec, token
         .segment "VECTORS"
-		.word	vec-1
-		keyword key, token
+	.word	vec-1
+	keyword key, token
 .endmacro
 
 ; lay down a keyword and an address,
