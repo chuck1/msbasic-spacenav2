@@ -400,16 +400,17 @@ L24AC:
         sta     INPUTBUFFER-5,y
         lda     INPUTBUFFER-5,y
         beq     L24EA
-        sec
-        sbc     #$3A
-        beq     L24BF
-        cmp     #$49
-        bne     L24C1
+        sec            ; C = 1
+        sbc     #$3A   ; ':' a = a - $3A, C = ~(a < $3A)
+        beq     L24BF  ; branch if a == $3A
+        cmp     #$49   ; 
+        bne     L24C1  ; branch if a != $83
 L24BF:
         sta     DATAFLG
 L24C1:
         sec
-        sbc     #TOKEN_REM-':'
+        sbc     #TOKEN_REM-':' ; $8E - $3A = $54
+        ; if coming from L24AC, already subtracted $3A so subtracting total of $8E
         bne     L246C
         sta     ENDCHR
 ; ----------------------------------------------------------------------------
