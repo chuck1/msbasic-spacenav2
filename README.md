@@ -73,3 +73,30 @@ Also, Ben Eater has an published excellent video demonstrating how to port BASIC
 * [Applesoft lite](http://cowgod.org/replica1/applesoft/) by Tom Greene helped a lot, too.
 * Thanks to Joe Zbicak for help with Intellision Keyboard BASIC
 * This work is dedicated to the memory of my dear hacking pal Michael "acidity" Kollmann.
+
+# BASIC Reference
+
+Things I've demonstrated
+
+    PRINT 1
+    PRINT "HELLO"
+    1+1
+    1-1
+    1*1
+    1/1
+    3/2
+    
+
+## FLow Control
+
+Haven't figured out WHILE or DO loops yet
+
+### FOR loop
+
+    FOR I = 0 TO 5
+    NEXT
+
+
+
+    
+
