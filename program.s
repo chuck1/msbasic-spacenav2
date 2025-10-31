@@ -372,15 +372,11 @@ L2496:
 L2497:
         inx
 L2498:
-.ifdef KBD
-        jsr     GET_UPPER
-.else
         lda     INPUTBUFFERX,x
   .ifndef CONFIG_2
         cmp     #$20
         beq     L2497
   .endif
-.endif
         sec
         sbc     TOKEN_NAME_TABLE,y
         beq     L2496
@@ -430,12 +426,22 @@ L24D0:
 ; ----------------------------------------------------------------------------
 ; ADVANCE POINTER TO NEXT TOKEN NAME
 ; ----------------------------------------------------------------------------
+; verified: L24D7 and L24DB are only called within this file
+
+; we can jump here from token string compare code 
+; and we could be at end of token string or not
 L24D7:
+                                     ; +=
+                                     ; ^    
         ldx     TXTPTR
         inc     EOLPNTR
-
+        ; dont iny when we enter this function because we might already be at EOS
+	jmp	L24DB_skip_iny
 L24DB:
         iny
+L24DB_skip_iny:
+                                     ; +=
+                                     ;  ^ 
 
 	; I think this code is supposed to iterate through the TOKEN_NAME_TABLE 
 	; until we find 
@@ -446,9 +452,10 @@ L24DB:
 	; so N=1 would indicate EOS
         bpl     L24DB ; branch if N=0
 
+	; reached EOS, move to start (and possibly end) of next token string
 	iny                          ; CHARLES ADD
-
-	; checking if end of table???
+       
+	; checking if end of table
         lda     TOKEN_NAME_TABLE,y
 	; branch back to code that compares INPUTBUFFER to token string
         bne     L2498 ; branch if a != 0
