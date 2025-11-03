@@ -35,7 +35,7 @@ PTRGET2:
 PTRGET3:
         sta     VARNAM
         jsr     CHRGOT
-        jsr     ISLETC
+        jsr     ISLETC ; C = 1 IF A-Z ELSE 0
         bcs     NAMOK
 SYNERR3:
         jmp     SYNERR
@@ -57,7 +57,7 @@ L2ECE:
         jsr     ISLETC
         bcs     L2ECE
 L2ED8:
-        cmp     #$24
+        cmp     #$24 ; '$'
 .ifdef CONFIG_SMALL
         bne     L2EF9
 .else
@@ -127,11 +127,11 @@ L2F29:
 ;	= 0 IF NOT
 ; ----------------------------------------------------------------------------
 ISLETC:
-        cmp     #$41
+        cmp     #$41 ; 'A'
         bcc     L2F3C
-        sbc     #$5B
+        sbc     #$5B ; '[' = 'Z' + 1
         sec
-        sbc     #$A5
+        sbc     #$A5 ; wrap around. $5B + $A5 = $100
 L2F3C:
         rts
 

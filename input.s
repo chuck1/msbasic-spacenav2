@@ -117,6 +117,8 @@ LC9B0:
 .endif
 ; ----------------------------------------------------------------------------
 ; "INPUT" STATEMENT
+; 
+; appears you cant use INPUT in direct mode???
 ; ----------------------------------------------------------------------------
 INPUT:
 .ifndef KBD
@@ -127,19 +129,19 @@ INPUT:
         sta     ZBE
         jsr     LCFFA
 .endif
-        cmp     #$22
+        cmp     #$22 ; '"'
 .ifdef SYM1
         bne     LC9B0
 .else
-        bne     L2A9E
+        bne     L2A9E ; error: illegal direct
 .endif
         jsr     STRTXT
-        lda     #$3B
+        lda     #$3B ; ';'
         jsr     SYNCHR
         jsr     STRPRT
 L2A9E:
         jsr     ERRDIR
-        lda     #$2C
+        lda     #$2C ; ','
         sta     INPUTBUFFER-1
 LCAF8:
 .ifdef APPLE
@@ -237,14 +239,17 @@ PROCESS_INPUT_ITEM:
         jsr     PTRGET
         sta     FORPNT
         sty     FORPNT+1
+	; TXPSV = TXTPTR
         lda     TXTPTR
         ldy     TXTPTR+1
         sta     TXPSV
         sty     TXPSV+1
+	; TXTPTR = INPTR
         ldx     INPTR
         ldy     INPTR+1
         stx     TXTPTR
         sty     TXTPTR+1
+
         jsr     CHRGOT
         bne     INSTART
         bit     INPUTFLG

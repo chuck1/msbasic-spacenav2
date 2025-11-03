@@ -126,23 +126,6 @@ GETLN:
     .else
         jsr     MONRDKEY
     .endif
-    .ifdef OSI
-        nop
-        nop
-        nop
-        nop
-        nop
-        nop
-        nop
-        nop
-        nop
-        nop
-        nop
-        nop
-        nop
-        nop
-        and     #$7F
-    .endif
   .endif
   .ifdef APPLE
 RDKEY:

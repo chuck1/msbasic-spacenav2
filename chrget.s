@@ -10,7 +10,7 @@ GENERIC_TXTPTR = GENERIC_CHRGOT + 1
 .ifdef KBD
         jsr     LF430
 .endif
-        cmp     #$3A
+        cmp     #$3A ; ':'
         bcs     L4058
 GENERIC_CHRGOT2:
         cmp     #$20
