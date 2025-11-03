@@ -96,6 +96,45 @@ Haven't figured out WHILE or DO loops yet
     FOR I = 0 TO 5
     NEXT
 
+## Input
+
+Only works in a program.
+
+For the input, not having the starting quotation mark fails. And if I add a terminating quotation mark, it gets added to string.
+
+    10 input
+    10 INPUT "HI"; A$
+    20 PRINT A$
+    RUN
+    HI? "HELLO ALL
+    HELLO ALL
+
+## Sample Programs
+
+### Primes
+
+    50 M = 5
+    100 DIM A(20)
+    200 A(0)=2
+    201 A(1)=3
+    210 N=2
+    250 X=4
+    270 FOR I = 0 TO M
+    280 P = 1
+    300 FOR J = 0 TO (N-1)
+    310 R = X - INT(X/A(J))*A(J)
+    390 GOTO 450
+    400 PRINT X,A(J),R
+    450 IF R = 0 THEN 460
+    455 GOTO 500
+    460 P = 0
+    500 NEXT
+    510 IF P = 0 THEN 570
+    530 PRINT "FOUND PRIME",X
+    550 A(N)=X
+    560 N=N+1
+    570 X=X+1
+    600 NEXT
 
 
     
