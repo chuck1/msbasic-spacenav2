@@ -164,8 +164,17 @@ LCAF8:
         jmp     DATA
 LCB0C:
   .endif
+
+	; L2ABE is in READ, which falls through to PROCESS_INPUT_LIST
+
+	; (Y,X) is supposed to be address of input string, which seems to be in INPUTBUFFER
+	ldx	#<INPUTBUFFER ; CHARLES ADD
+	ldy	#>INPUTBUFFER ; CHARLES ADD
+
         lda     INPUTBUFFER
         bne     L2ABE
+
+
   .ifdef CONFIG_FILE
         lda     CURDVC
         bne     LCAF8
