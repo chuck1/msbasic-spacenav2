@@ -74,6 +74,16 @@ Also, Ben Eater has an published excellent video demonstrating how to port BASIC
 * Thanks to Joe Zbicak for help with Intellision Keyboard BASIC
 * This work is dedicated to the memory of my dear hacking pal Michael "acidity" Kollmann.
 
+# My Issues
+
+* cant figure out IF THEN ELSE END
+* cant figure out WHILE loops
+* cant figure out DO loops
+* cant figure out PEEK
+* INPUT seems to want weird string syntax
+* no backspace
+* no line editing
+
 # BASIC Reference
 
 Things I've demonstrated
@@ -136,6 +146,17 @@ For the input, not having the starting quotation mark fails. And if I add a term
     570 X=X+1
     600 NEXT
 
+### Fib
+
+    5 D = 1000
+    10 A = 1
+    20 B = 1
+    25 PRINT A,B
+    30 C = A + B
+    40 A = B
+    50 B = C
+    55 PRINT A,B,B/A
+    60 IF B < D THEN 30
 
     
 
